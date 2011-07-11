@@ -1,0 +1,16 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "About" %}{% endblock %}
+
+{% block body %}
+    {% blocktrans %}
+        <p>About <b>Re.nooble</b> ...</p>
+        <p> We, Alvaro and Hannes, truely believe in renewable energies, especially in small scale renewable technologies. <br>
+        We think that nations move too slow when it comes to realizing the climate targets on a national level, and we see many people moving on and installing their own systems in their backyards, on their roof-tops, on balcoonies, etc. We want to create a platform for the early adopters to spread their experiences and motivate others to join the energy movement and produce clean, sustainable, reliable and most important affortable renewable power. </p> 
+    {% endblocktrans %}
+    {% blocktrans %}
+        We believe in open source developments and we draw out inspiration from Django, Pinax, and the Python community.
+    {% endblocktrans %}
+{% endblock %}
