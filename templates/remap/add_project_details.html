@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "remap/base2.html" %}
 
 {% load i18n %}
 
@@ -8,12 +8,12 @@
     {% blocktrans %}
         <p>Please enter your project details to the <b>Re.nooble</b> database here:</p>
     {% endblocktrans %}
-    {% blocktrans %}
+
+       <p>You have entered {{ country }}</p>
         
     <form action="/contact/" method="post">{% csrf_token %}
     {{ projectForm.as_p }}
     <input type="submit" value="Submit" />
     </form>
 
-    {% endblocktrans %}
 {% endblock %}
