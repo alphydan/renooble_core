@@ -44,6 +44,7 @@
     {% if user.is_authenticated %}
         <ul class="tabs">{% spaceless %}
             <li id="tab_profile"><a href="{% url profile_detail user.username %}">{% trans "Profile" %}</a></li>
+            <li id="tab_remap"><a href="{% url add_project_location %}">{% trans "ReMap" %}</a></li>
             <li id="tab_photos"><a href="{% url photos %}">{% trans "Photos" %}</a></li>
             <li id="tab_blogs"><a href="{% url blog_list_all %}">{% trans "Blogs" %}</a></li>
             <li id="tab_tribes"><a href="{% url tribe_list %}">{% trans "Tribes" %}</a></li>
