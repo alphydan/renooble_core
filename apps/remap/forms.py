@@ -22,7 +22,7 @@ class ReMapLocationForm(ModelForm):
 class ReMapProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ('rawTechnology', 'installationDate', 'installedPower', 'AEP', 'hideLocation', 'projectBuilding', 'surroundings', 'gridConnection', 'commercialInstallation', 'userEmail', 'userComments')
+        fields = ('cleanAddress', 'city', 'state', 'country', 'lat', 'lng', 'rawTechnology', 'installationDate', 'installedPower', 'AEP', 'hideLocation', 'projectBuilding', 'surroundings', 'gridConnection', 'commercialInstallation', 'userEmail', 'userComments')
         widgets = {'installationDate': SelectDateWidget(years=range(1970, 2011)), 'userComments': forms.Textarea}
 
 class ReMapUserEditProject(ModelForm):

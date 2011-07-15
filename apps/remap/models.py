@@ -9,7 +9,7 @@ class Project(models.Model):
     # streetName = models.CharField(max_length=255, help_text="Your Street", null=True, blank=True)
     # houseNumber = models.CharField(max_length=10, null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
-    state = models.CharField(max_length=100, null=True, blank=True)
+    state = models.CharField(max_length=100)
     # zipcode = models.CharField(max_length=15, null=True, blank=True)
     country = models.CharField(max_length=50)
     lat = models.DecimalField(max_digits=7, decimal_places=4)

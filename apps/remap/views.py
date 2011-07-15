@@ -27,11 +27,21 @@ def add_project_details(request):
             # Process the data in form.cleaned_data
             # ...
             # extract the address
+            cleanAddress = locationForm.cleaned_data['cleanAddress']
+            state = locationForm.cleaned_data['state']
             country = locationForm.cleaned_data['country']
-            projectForm = ReMapProjectForm()
+            lat = locationForm.cleaned_data['lat']
+            lng = locationForm.cleaned_data['lng']
+            projectForm = ReMapProjectForm(initial = { 
+                 'cleanAddress': cleanAddress, 
+                 'state': state, 
+                 'country': country, 
+                 'lat': lat,
+                 'lng': lng,
+            })
             return render_to_response('remap/add_project_details.html', {
                  'projectForm': projectForm,
-                 'user_country': country,
+                 'country': country,
                  }, context_instance = RequestContext(request))
 
         else:
