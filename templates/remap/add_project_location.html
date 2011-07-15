@@ -8,12 +8,10 @@
     {% blocktrans %}
         <p>Please enter your location to the <b>Re.nooble</b> database here:</p>
     {% endblocktrans %}
-    {% blocktrans %}
         
-    <form action="add/details" method="post">{% csrf_token %}
+    <form action="details" method="post">{% csrf_token %}
     {{ locationForm.as_p }}
     <input type="submit" value="Submit" />
     </form>
 
-    {% endblocktrans %}
 {% endblock %}

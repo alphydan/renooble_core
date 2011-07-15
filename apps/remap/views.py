@@ -1,3 +1,7 @@
+# Django imports
+from django.shortcuts import render_to_response
+
+# Re.nooble imports
 from remap.models import Project
 from remap.forms import ReMapLocationForm, ReMapProjectForm, ReMapUserEditProject
 
@@ -9,15 +13,15 @@ def projects(request):
     return redirect('http://www.django.org')
 
 def add_project(request):
-    locationForm = ReMapLocationForm
-    return render_to_response('add_project_location.html', {
-        'locationForm': locationForm
+    locationForm = ReMapLocationForm()
+    return render_to_response('remap/add_project_location.html', {
+        'locationForm': locationForm,
     })
 
 def add_project_details(request):
-    projectForm = ReMapProjectForm
-    return render_to_response('add_project_details.html', {
-        'projectForm': projectForm
+    projectForm = ReMapProjectForm()
+    return render_to_response('remap/add_project_details.html', {
+        'projectForm': projectForm,
     })
 
 
