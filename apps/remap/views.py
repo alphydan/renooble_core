@@ -15,7 +15,7 @@ def projects(request):
     return redirect('http://www.django.org')
 
 def add_project(request):
-    locationForm = ReMapLocationForm()
+    locationForm = ReMapLocationForm(auto_id='%s')
     return render_to_response('remap/add_project_location.html', {
         'locationForm': locationForm,
     }, context_instance = RequestContext(request))
