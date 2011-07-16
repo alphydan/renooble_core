@@ -5,10 +5,10 @@ class Project(models.Model):
 #####
 # Address related information
     # rawAddress = models.CharField("Your Address", max_length=255, help_text="Tell us your address or simply your zipcode and country") # User information, mendatory
-    cleanAddress = models.CharField(max_length=255, help_text="Your address")
+    # locality = models.CharField(max_length=255, help_text="Your address")
     # streetName = models.CharField(max_length=255, help_text="Your Street", null=True, blank=True)
     # houseNumber = models.CharField(max_length=10, null=True, blank=True)
-    city = models.CharField(max_length=50, null=True, blank=True)
+    locality = models.CharField(max_length=50, null=True, blank=True)
     state = models.CharField(max_length=100)
     # zipcode = models.CharField(max_length=15, null=True, blank=True)
     country = models.CharField(max_length=50)

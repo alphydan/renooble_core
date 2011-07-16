@@ -23,17 +23,21 @@ def add_project(request):
 def add_project_details(request):
     if request.method == 'POST': # If the form has been submitted...
         locationForm = ReMapLocationForm(request.POST) 
+        # if True: # All validation rules pass
         if locationForm.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
             # ...
             # extract the address
-            cleanAddress = locationForm.cleaned_data['cleanAddress']
+            print "Valid form .............................."
+            locality = locationForm.cleaned_data['locality']
+            # cleanAddress = locationForm.cleaned_data['cleanAddress']
             state = locationForm.cleaned_data['state']
             country = locationForm.cleaned_data['country']
             lat = locationForm.cleaned_data['lat']
             lng = locationForm.cleaned_data['lng']
             projectForm = ReMapProjectForm(initial = { 
-                 'cleanAddress': cleanAddress, 
+                 # 'cleanAddress': cleanAddress, 
+                 'locality': locality, 
                  'state': state, 
                  'country': country, 
                  'lat': lat,
@@ -45,6 +49,7 @@ def add_project_details(request):
                  }, context_instance = RequestContext(request))
 
         else:
+            print locationForm.errors 
             return HttpResponseRedirect('../') # Redirect to the location reg if site is requested w/o proper location 
     else:
         return HttpResponseRedirect('../') # Redirect to the location reg if site is requested w/o proper location

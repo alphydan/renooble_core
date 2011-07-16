@@ -17,12 +17,19 @@ from remap.models import Project
 class ReMapLocationForm(ModelForm):
     class Meta:
         model = Project
-        fields = ('cleanAddress', 'city', 'state', 'country', 'lat', 'lng')
+        fields = ('locality', 'state', 'country', 'lat', 'lng')
+        widgets = {
+            # 'locality': forms.TextInput(attrs={'disabled':'disabled'}), 
+            # 'state': forms.TextInput(attrs={'disabled':'disabled'}), 
+            # 'country': forms.TextInput(attrs={'disabled':'disabled'}), 
+            # 'lat': forms.TextInput(attrs={'disabled':'disabled'}), 
+            # 'lng': forms.TextInput(attrs={'disabled':'disabled'}), 
+            }
 
 class ReMapProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ('cleanAddress', 'city', 'state', 'country', 'lat', 'lng', 'rawTechnology', 'installationDate', 'installedPower', 'AEP', 'hideLocation', 'projectBuilding', 'surroundings', 'gridConnection', 'commercialInstallation', 'userEmail', 'userComments')
+        fields = ('locality', 'state', 'country', 'lat', 'lng', 'rawTechnology', 'installationDate', 'installedPower', 'AEP', 'hideLocation', 'projectBuilding', 'surroundings', 'gridConnection', 'commercialInstallation', 'userEmail', 'userComments')
         widgets = {'installationDate': SelectDateWidget(years=range(1970, 2011)), 'userComments': forms.Textarea}
 
 class ReMapUserEditProject(ModelForm):
