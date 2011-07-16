@@ -91,10 +91,10 @@ $.widget( "ui.addresspicker", {
   
   _updatePosition: function(location) {
     if (this.lat) {
-      this.lat.val(location.lat());
+      this.lat.val(location.lat().toFixed(7)); // Hannes: .toFixed(7) added to comply with the Django is_valid function (max.of 7 digits allowed)
     }
     if (this.lng) {
-      this.lng.val(location.lng());
+      this.lng.val(location.lng().toFixed(7));
     }
   },
   
