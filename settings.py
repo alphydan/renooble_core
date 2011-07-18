@@ -113,6 +113,7 @@ ROOT_URLCONF = "renooble.urls"
 TEMPLATE_DIRS = [
     os.path.join(PROJECT_ROOT, "templates"),
     os.path.join(PINAX_ROOT, "templates", PINAX_THEME),
+    "/home/renooble/pinax-renooble/virtual_server/lib/python2.6/site-packages/django/contrib/formtools/templates/",
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = [
@@ -154,7 +155,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.humanize",
     "django.contrib.markup",
-    
+    "django.contrib.formtools", # needed for the form preview, delete if not used    
     "pinax.templatetags",
     
     # external

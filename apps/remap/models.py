@@ -12,8 +12,8 @@ class Project(models.Model):
     state = models.CharField(max_length=100)
     # zipcode = models.CharField(max_length=15, null=True, blank=True)
     country = models.CharField(max_length=50)
-    lat = models.DecimalField(max_digits=7, decimal_places=4)
-    lng = models.DecimalField(max_digits=7, decimal_places=4)
+    lat = models.DecimalField(max_digits=10, decimal_places=7)
+    lng = models.DecimalField(max_digits=10, decimal_places=7)
     hideLocation = models.BooleanField("Want to hide your exact location?", default=True, help_text="We want to protect your privacy. If you select this option, we will not display the exact location of your installation") # User information, mendatory
 
 #####
@@ -78,7 +78,8 @@ class Project(models.Model):
 
     
     def __unicode__(self):
-        return self.cleanAddress
+        return self.locality
+        # return self.cleanAddress
 
 class WindProject(models.Model):
 # Wind Project specific information

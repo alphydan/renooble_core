@@ -1,8 +1,13 @@
 #from django
 from django.conf.urls.defaults import *
 
-# from bookstore
+# from remap
 from remap.models import Project
+
+# for the project registrations form review
+from remap.preview import ProjectRegistrationFormPreview
+from remap.forms import ReMapProjectForm
+from django import forms
 
 urlpatterns = patterns("",
     # url(r"^$", "remap.views.projects", name="all_projects"),
@@ -13,6 +18,8 @@ urlpatterns = patterns("",
     # CRUD urls
     url(r"^add/$", "remap.views.add_project", name="add_project_location"),
     url(r"^add/details/$", "remap.views.add_project_details", name="add_project_details"),
+    # url(r"^add/confirm/$", "remap.views.add_project_confirm", name="add_project_confirm"),
+    url(r"^add/confirm/$", ProjectRegistrationFormPreview(ReMapProjectForm), name="add_project_confirm"),
     # url(r"^update/(\d+)/$", "remap.views.update_project", name="update_project"),
     # url(r"^delete/(\d+)/$", "remap.views.delete_project", name="delete_project"),
 )

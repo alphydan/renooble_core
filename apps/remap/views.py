@@ -53,3 +53,19 @@ def add_project_details(request):
             return HttpResponseRedirect('../') # Redirect to the location reg if site is requested w/o proper location 
     else:
         return HttpResponseRedirect('../') # Redirect to the location reg if site is requested w/o proper location
+
+def add_project_confirm(request):
+    if request.method == 'POST': # If the form has been submitted...
+        print "POST worked"
+        projectForm = ReMapProjectForm(request.POST)
+        if projectForm.is_valid():
+            return render_to_response('remap/add_project_preview.html', {
+                 'projectForm': projectForm,
+                 }, context_instance = RequestContext(request))
+        else: 
+            print projectForm.errors
+            return render_to_response('remap/add_project_details.html', {
+                 'projectForm': projectForm,
+                 }, context_instance = RequestContext(request))
+            
+
