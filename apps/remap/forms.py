@@ -29,12 +29,20 @@ class ReMapLocationForm(ModelForm):
 class ReMapProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ('locality', 'state', 'country', 'lat', 'lng', 'rawTechnology', 'installationDate', 'installedPower', 'AEP', 'hideLocation', 'projectBuilding', 'surroundings', 'gridConnection', 'commercialInstallation', 'userEmail', 'userComments')
-        widgets = {'installationDate': SelectDateWidget(years=range(1970, 2011)), 'userComments': forms.Textarea}
+        exclude = (
+                'entryDate',
+                'adminComments',
+                'activationKey',
+                'activated', 
+                'reviewed',
+                'reviewDate',
+                )
+        # fields = ('locality', 'state', 'country', 'lat', 'lng', 'projectName', 'projectDescription',  'rawTechnology', 'installationDate', 'installedPower', 'AEP', 'hideLocation', 'picture', 'projectBuilding', 'surroundings', 'gridConnection', 'commercialInstallation', 'userEmail', 'userComments')
+        # widgets = {'installationDate': SelectDateWidget(years=range(1980, 2011)), 'projectDescription': forms.Textarea, 'userComments': forms.Textarea}
 
 class ReMapUserEditProject(ModelForm):
     class Meta:
         model = Project
-        fields = ('rawTechnology', 'installationDate', 'installedPower', 'AEP', 'hideLocation', 'projectBuilding', 'surroundings', 'gridConnection', 'commercialInstallation', 'userComments')
-        widgets = {'installationDate': SelectDateWidget(years=range(1970, 2011)), 'userComments': forms.Textarea}
+        fields = ('projectName', 'projectDescription',  'rawTechnology', 'installationDate', 'installedPower', 'AEP', 'hideLocation', 'picture', 'projectBuilding', 'surroundings', 'gridConnection', 'commercialInstallation', 'userEmail', 'userComments')
+        widgets = {'installationDate': SelectDateWidget(years=range(1980, 2011)), 'projectDescription': forms.Textarea, 'userComments': forms.Textarea}
 

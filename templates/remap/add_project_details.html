@@ -5,15 +5,15 @@
 {% block head_title %}{% trans "Add a new project to ReMap" %}{% endblock %}
 
 {% block body %}
-    {% blocktrans %}
-        <p>Please enter your project details to the <b>Re.nooble</b> database here:</p>
-    {% endblocktrans %}
+{% blocktrans %}
+<p>Please enter your project details to the <b>Re.nooble</b> database here:</p>
+{% endblocktrans %}
 
-       <p>You have entered {{ country }}</p>
-        
-    <form action="../confirm/" method="post">{% csrf_token %}
+<p>You have entered {{ country }}</p>
+
+<form action="../confirm/" method="post">{% csrf_token %}
     {{ projectForm.as_p }}
     <input type="submit" value="Submit" />
-    </form>
+</form>
 
 {% endblock %}
