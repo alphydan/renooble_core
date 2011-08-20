@@ -37,39 +37,228 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     font-size: 100%;
     font-family: inherit;
     vertical-align: baseline;
-                }
-                body {
-                    line-height: 1;
-                    }
-                    ol, ul {
-                        list-style: none;
-                        }
-                        /* tables still need 'cellspacing="0"' in the markup */
-                        table {
-                            border-collapse: separate;
-                            border-spacing: 0;
-                                }
-                                caption, th, td {
-                                    text-align: left;
-                                    font-weight: normal;
-                                        }
-                                        blockquote:before, blockquote:after, q:before, q:after {
-                                            content: "";
-                                            }
-                                            blockquote, q {
-                                                quotes: "" "";
-                                                }
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: "";
+}
+blockquote, q {
+    quotes: "" "";
+}
 
-                                                div {overflow: hidden;}
+div {overflow: hidden;}
 
-                                                /*
-                                                 * ===========================================
-                                                 * */
+/*
+ * ===========================================
+ * */
 
 body {
     background-color: #fff;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
     color: #000;
     line-height: 20px;
+    text-align : center ;
+    min-width : 770px ;
+    color: #333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+}
+
+div.left_panel {
+    width: 550px;
+}
+div.right_panel {
+    margin-top: 20px;
+    width: 200px;
+    float: right;
+    z-index: 999;
+}
+
+a.menu_links {
+    color: #333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+}
+
+/* GENERAL TAB STYLING */
+
+#left_tabs {
+    position: absolute;
+    bottom: -1px; /* must be same thickness as tab border */
+    left: 210px; /* based on width and padding of logo */
+}
+#right_tabs {
+    position: absolute;
+    right: 15px;
+    bottom: -1px; /* must be same thickness as tab border */
+}
+
+ul.tabs a, ul.tabs a:visited {
+    color: #444; /* unselected tab text colour */
+    font-weight: bold;
+    text-decoration: none;
+}
+ul.tabs a:hover {
+    color: #666; /* unselected tab text hover colour */
+}
+ul.tabs li {
+    list-style-type: none;
+    display: inline;
+    background-color: #DDD; /* unselected tab colour */
+    padding: 5px 0 4px;
+    margin: 0 1px; /* to compensate for border */
+}
+ul.tabs li a {
+    padding: 5px 12px;
+}
+ul.tabs {
+    margin: 0 0 5px;
+}
+h2 {
+    font-weight:normal;
+    width:100%;
+    float:left;
+    margin: 20px 0  0px 0;
+}
+label {
+    width: 100px;
+    float:left;
+    text-align:right;
+    margin:4px 10px 0 0;
+}
+
+div.above_logo{
+    width : 770px ;
+    text-align : right;
+    position: relative;
+    bottom: 0px;
+    margin-left : auto ;
+    margin-right : auto ;
+    border-style:none;
+    border-width:2px;
+} 
+div.logo{
+    width : 770px ;
+    height: 100px;
+    text-align : left ;
+    margin-left : auto ;
+    margin-right : auto ;
+    margin-top: 2px;
+    position : relative ;
+    border-style:none;
+    border-width:0px;
+}
+div.menubar{
+    width : 770px ;
+    height: 50px;
+    margin: 20px 0  0px 0;
+    text-align : left ;
+    margin-left : auto ;
+    margin-right : auto ;
+    margin-top: 2px;
+    position : relative ;
+    border-style:none;
+    border-width:2px;
+    background-color:#3366CC;
+}
+
+div.container{
+    width : 770px ;
+    text-align : left ;
+    margin-left : auto ;
+    margin-right : auto ;
+    margin-top: 2px;
+    position : relative ;
+    border-style:none;
+    border-width:2px;
+}
+div.footer{
+    width : 770px ;
+    text-align : center;
+    margin-left : auto ;
+    margin-right : auto ;
+    margin-top: 2px;
+    position : relative ;
+    border-style:none;
+}
+
+/** From Addresspicker **/
+
+code {
+  background-color: ghostWhite;
+  border: 1px solid #DEDEDE;
+  color: #444;
+  padding: 0 3px;
+}
+
+label {
+  width: 100px;
+  float:left;
+  text-align:right;
+  margin:4px 10px 0 0;
+}
+
+p {
+  float:left;
+  width: 100%;
+}
+.gist {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.ui-autocomplete-input, .input input {
+  border: none; 
+  font-size: 14px;
+  width: 300px;
+  height: 24px;
+  margin-bottom: 5px;
+  padding-top: 2px;
+}
+
+.ui-autocomplete-input {
+  border: 1px solid #DDD !important;
+  padding-top: 0px !important;
+}
+
+#map {
+  border: 1px solid #DDD; 
+  width:300px;
+  height: 300px;
+  float:left;  
+  margin: 0px 0 0 10px;
+  -webkit-box-shadow: #AAA 0px 0px 15px;
+}
+
+#legend {
+  float: left;
+  font-size: 12px;
+  font-style: italic;
+  margin: 10px 0px 0px 430px;
+}
+
+.ui-menu .ui-menu-item a {
+  font-size: 12px;
+}
+
+.input {
+  float:left;  
 }

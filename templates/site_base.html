@@ -24,30 +24,32 @@
     {% block extra_head %}{% endblock %}
 {% endblock %}
 
+{% comment %}
 {% block right_tabs %}
     {% if user.is_authenticated %}
         <ul class="tabs">{% spaceless %}
-            <li id="tab_profile"><a href="{% url profile_detail user.username %}">{% trans "Profile" %}</a></li>
+            <li id="tab_profile"><a href="{% url profile_detail user.username %}">{% trans "Proggfile" %}</a></li>
             <li id="tab_remap"><a href="{% url add_project_location %}">{% trans "ReMap" %}</a></li>
-            <li id="tab_photos"><a href="{% url photos %}">{% trans "Photos" %}</a></li>
+            <!-- <li id="tab_photos"><a href="{% url photos %}">{% trans "Photos" %}</a></li>
             <li id="tab_blogs"><a href="{% url blog_list_all %}">{% trans "Blogs" %}</a></li>
             <li id="tab_tribes"><a href="{% url tribe_list %}">{% trans "Tribes" %}</a></li>
             <li id="tab_tweets"><a href="{% url tweets_you_follow %}">{% trans "Tweets" %}</a></li>
-            <li id="tab_bookmarks"><a href="{% url all_bookmarks %}">{% trans "Bookmarks" %}</a></li>
+            <li id="tab_bookmarks"><a href="{% url all_bookmarks %}">{% trans "Bookmarks" %}</a></li>-->
             <li id="tab_swaps"><a href="{% url offer_list_all %}">{% trans "Swaps" %}</a></li>
-            <li id="tab_locations"><a href="{% url loc_yours %}">{% trans "Locations" %}</a></li>
-            <li id="tab_inbox"><a href="{% url messages_inbox %}">{% trans "Inbox" %} ({{ combined_inbox_count }})</a></li>
+            <!-- <li id="tab_locations"><a href="{% url loc_yours %}">{% trans "Locations" %}</a></li>
+            <li id="tab_inbox"><a href="{% url messages_inbox %}">{% trans "Inbox" %} ({{ combined_inbox_count }})</a></li>-->
         {% endspaceless %}</ul>
     {% endif %}
 {% endblock %}
+{% endcomment %}
 
 {% block footer %}
 <div class="legal">
-    {% trans "&copy; 2010 &lt;your company here&gt;" %}
+    {% trans "&copy; 2010 &lt;Re.nooble&gt;" %}
     - <a href="{% url about %}">{% trans "About" %}</a>
-    - <a href="{% url terms %}">{% trans "Terms of Service" %}</a>
-    - <a href="{% url privacy %}">{% trans "Privacy Policy" %}</a>
-    - <a href="{% url dmca %}">{% trans "DMCA Notice" %}</a>
+    - <a href="{% url about %}">{% trans "Contact Us" %}</a>
+    - <a href="{% url support_us %}">{% trans "Support Us" %}</a>
+    - <a href="{% url about %}">{% trans "Sitemap" %}</a>
 </div>
 {% endblock %}
 

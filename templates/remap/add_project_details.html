@@ -12,8 +12,24 @@
 <p>You have entered {{ country }}</p>
 
 <form action="../confirm/" method="post">{% csrf_token %}
-    {{ projectForm.as_p }}
-    <input type="submit" value="Submit" />
+    <table>
+        <td> </td>
+        <td id="form_error"> here is an error
+            {% if projectForm.projectName.errors %}
+            {{ projectForm.projectName.errors|join:"<br>"}}
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td> <label for="id_projectName">Project Name </label></td>
+        <td> {{ projectForm.projectName }} </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td id="helptext"> Helptext {{ projectForm.projectName.helptext}}</td>
+    </tr>
+</table>
+<input type="submit" value="Submit" />
 </form>
 
 {% endblock %}

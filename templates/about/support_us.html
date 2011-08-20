@@ -1,0 +1,22 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Support us" %}{% endblock %}
+
+{% block body %}
+    {% blocktrans %}
+        <p>Support <b>Re.nooble</b> ...</p>
+        <p> We are thrilled by the idea of re.nooble and we truely believe that everyone of us can power their home and produce their own energy needs.<br>
+        But we also acknoledge that current procedures and regulations for renewable energies are difficult and the quick development in technologies might be overwhelming for most of us.
+        <br> And this is where the re.nooble kicks in!</p>
+        <p><b> If you want to support the future of re.nooble</b>
+        please get in 
+        {% endblocktrans %}
+        <a href="{% url add_project_location %}">{% trans "contact with us" %}</a></p>
+        {% blocktrans %}
+        <p>
+        Re.nooble is currently self-funded and we need more resources to provide a free, comprehensive and detailed renewable energy service to everyone.
+        </p>
+    {% endblocktrans %}
+{% endblock %}
