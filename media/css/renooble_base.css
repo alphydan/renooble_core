@@ -15,11 +15,14 @@
  *  Lighter Green:      #dcffa4
  *  Dark Green:         #628e0e
  *
- */*
+ *
+ *
+ * /*
  ===========================================
  Reset
  ===========================================
    */
+
 html, body, div, span, applet, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -37,7 +40,8 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     font-size: 100%;
     font-family: inherit;
     vertical-align: baseline;
-}
+} 
+
 body {
     line-height: 1;
 }
@@ -49,10 +53,13 @@ table {
     border-collapse: separate;
     border-spacing: 0;
 }
+
 caption, th, td {
     text-align: left;
     font-weight: normal;
-}
+    vertical-align: top;
+} 
+
 blockquote:before, blockquote:after, q:before, q:after {
     content: "";
 }
@@ -183,7 +190,6 @@ div.container{
     margin-top: 2px;
     position : relative ;
     border-style:none;
-    border-width:2px;
 }
 div.footer{
     width : 770px ;
@@ -191,8 +197,8 @@ div.footer{
     margin-left : auto ;
     margin-right : auto ;
     margin-top: 2px;
-    position : relative ;
     border-style:none;
+    clear: both;
 }
 
 /** From Addresspicker **/
@@ -204,12 +210,12 @@ code {
   padding: 0 3px;
 }
 
-label {
+/* label {
   width: 100px;
   float:left;
   text-align:right;
   margin:4px 10px 0 0;
-}
+} */
 
 p {
   float:left;
@@ -220,6 +226,7 @@ p {
   font-size: 12px;
 }
 
+/*
 .ui-autocomplete-input, .input input {
   border: none; 
   font-size: 14px;
@@ -228,6 +235,7 @@ p {
   margin-bottom: 5px;
   padding-top: 2px;
 }
+*/
 
 .ui-autocomplete-input {
   border: 1px solid #DDD !important;
@@ -256,4 +264,10 @@ p {
 
 .input {
   float:left;  
+}
+
+.help_text {
+    font-size: 0.8em;
+    width: 200px;
+    padding: 0px 0px 20px 0px;
 }

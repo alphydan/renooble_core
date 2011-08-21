@@ -1,5 +1,4 @@
 {% load i18n %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -24,7 +23,6 @@
     <body class="{% block body_class %}{% endblock %}">
 
         <div class="above_logo">
-            {% comment %}
             {% block locale_switcher %}
             <form action="{% if request.user.is_authenticated %}{% url acct_language_change %}{% else %}/i18n/setlang/{% endif %}" method="post" id="locale_switcher">
                 {% csrf_token %}
@@ -39,7 +37,6 @@
             {% block login %}
             {% include "_account_bar.html" %}
             {% endblock %}
-            {% endcomment %}
         </div>
         <div class="logo">
             {% block logo_link_image %}<a href="{% url home %}"><img src="{{ STATIC_URL }}img/renooble_logo.png" alt="Re.nooble"/></a>{% endblock %}
@@ -58,7 +55,13 @@
             {% endblock %}
             {% endspaceless %}
         </div> 
-        <div id="subnav" class="clearfix">{% block subnav_base %}<div class="clearfix">{% block subnav %}&nbsp;{% endblock %}</div>{% endblock %}</div>
+        <div id="subnav" class="clearfix">
+            {% block subnav_base %}
+            <div class="clearfix">
+                {% block subnav %}&nbsp;{% endblock %}
+            </div>
+            {% endblock %}
+        </div>
 
         {% block body_outer %}
         <div class="container">
@@ -69,8 +72,9 @@
         </div>
         {% endblock %}
 
-        <div class="footer">{% block footer %}{% endblock %}</div>
+        <div class="footer">
+            {% block footer %}{% endblock %}
+        </div>
 
-    </div>
 </body>
 </html>
