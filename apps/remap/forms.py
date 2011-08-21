@@ -10,14 +10,13 @@ from django.core.mail import send_mail
 
 # from api.fields import ModelAutoCompleteField
 import datetime
-# import hashlib 
 
 from remap.models import Project
 
 class ReMapLocationForm(ModelForm):
     class Meta:
         model = Project
-        fields = ('locality', 'state', 'country', 'lat', 'lng')
+        fields = ('locality', 'state', 'country', 'lat', 'lng', 'energyResource')
         widgets = {
             # 'locality': forms.TextInput(attrs={'disabled':'disabled'}), 
             # 'state': forms.TextInput(attrs={'disabled':'disabled'}), 
@@ -37,8 +36,17 @@ class ReMapProjectForm(ModelForm):
                 'reviewed',
                 'reviewDate',
                 )
-        # fields = ('locality', 'state', 'country', 'lat', 'lng', 'projectName', 'projectDescription',  'rawTechnology', 'installationDate', 'installedPower', 'AEP', 'hideLocation', 'picture', 'projectBuilding', 'surroundings', 'gridConnection', 'commercialInstallation', 'userEmail', 'userComments')
-        # widgets = {'installationDate': SelectDateWidget(years=range(1980, 2011)), 'projectDescription': forms.Textarea, 'userComments': forms.Textarea}
+        widgets = {
+                'installationDate': SelectDateWidget(years=range(1980, 2011)), 
+                'projectDescription': forms.Textarea, 
+                'userComments': forms.Textarea, 
+                'locality': forms.TextInput(attrs={'disabled':'disabled'}), 
+                'state': forms.TextInput(attrs={'disabled':'disabled'}), 
+                'country': forms.TextInput(attrs={'disabled':'disabled'}), 
+                'lat': forms.TextInput(attrs={'disabled':'disabled'}), 
+                'lng': forms.TextInput(attrs={'disabled':'disabled'}),                
+                'energyResource': forms.TextInput(attrs={'disabled':'disabled'}),                
+                }
 
 class ReMapUserEditProject(ModelForm):
     class Meta:

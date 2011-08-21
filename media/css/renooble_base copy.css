@@ -20,7 +20,7 @@
  Reset
  ===========================================
    */
-html, body, div, span, applet, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, font, img, ins, kbd, q, s, samp,
@@ -60,12 +60,15 @@ blockquote, q {
     quotes: "" "";
 }
 
+div {overflow: hidden;}
+
 /*
  * ===========================================
  * */
 
 body {
     background-color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
     color: #000;
     line-height: 20px;
     text-align : center ;
@@ -88,6 +91,11 @@ div.right_panel {
 }
 
 a.menu_links {
+    color: #333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
 }
 
 /* GENERAL TAB STYLING */

@@ -14,214 +14,24 @@
 
 <form action="../confirm/" method="post">{% csrf_token %}
     <table>
+        {% for field in projectForm %}
         <tr>
             <td> </td>
             <td id="form_error"> 
-                {% if projectForm.projectName.errors %}
-                {{ projectForm.projectName.errors|join:"<br>"}}
+                {% if field.errors %}
+                {{ field.errors|join:"<br>"}}
                 {% endif %}
             </td>
         </tr>
         <tr>
-            <td> <label for="id_projectName">Project Name </label></td>
-            <td> {{ projectForm.projectName }} </td>
+            <td> {{ field.label_tag }} </td>
+            <td> {{ field }} </td>
         </tr>
         <tr>
             <td> </td>
-            <td id="help_text"> {{ projectForm.projectName.help_text}}</td>
+            <td id="help_text"> {{ field.help_text}}</td>
         </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.projectDescription.errors %}
-                {{ projectForm.projectDescription.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_projectDescription">Project Description</label></td>
-            <td> {{ projectForm.projectDescription}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.projectDescription.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.installationDate.errors %}
-                {{ projectForm.installationDate.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_installationDate">Installation Date</label></td>
-            <td> {{ projectForm.installationDate}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.installationDate.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.installedPower.errors %}
-                {{ projectForm.installedPower.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_installedPower">Installed Power (in kW)</label></td>
-            <td> {{ projectForm.installedPower}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.installedPower.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.AEP.errors %}
-                {{ projectForm.AEP.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_AEP">Annual Energy Production (in kWh)</label></td>
-            <td> {{ projectForm.AEP}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.AEP.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.hideLocation.errors %}
-                {{ projectForm.hideLocation.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_hideLocation">Hide Location</label></td>
-            <td> {{ projectForm.hideLocation}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.hideLocation.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.picture.errors %}
-                {{ projectForm..errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_picture">Installation Picture</label></td>
-            <td> {{ projectForm.picture}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.picture.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.projectBuilding.errors %}
-                {{ projectForm.projectBuilding.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_projectBuilding">Place of Installation</label></td>
-            <td> {{ projectForm.projectBuilding}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.projectBuilding.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.surroundings.errors %}
-                {{ projectForm.surroundings.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_surroundings">Environment of Installation</label></td>
-            <td> {{ projectForm.surroundings}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.surroundings.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.gridConnection.errors %}
-                {{ projectForm.gridConnection.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_gridConnection">Type of Grid Connection</label></td>
-            <td> {{ projectForm.gridConnection}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.gridConnection.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.commercialInstallation.errors %}
-                {{ projectForm.commercialInstallation.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_commercialInstallation">Commercial Installation</label></td>
-            <td> {{ projectForm.commercialInstallation}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.commercialInstallation.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.userEmail.errors %}
-                {{ projectForm.userEmail.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_userEmail">Your email</label></td>
-            <td> {{ projectForm.userEmail}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.userEmail.help_text}}</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="form_error"> 
-                {% if projectForm.userComments.errors %}
-                {{ projectForm.userComments.errors|join:"<br>"}}
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <td> <label for="id_userComments">Your comments</label></td>
-            <td> {{ projectForm.userComments}} </td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td id="help_text"> {{ projectForm.userComments.help_text}}</td>
-        </tr>
+        {% endfor %}
 
     </table>
     <input type="submit" value="Register Project" />
