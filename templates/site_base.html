@@ -4,23 +4,7 @@
 {% load analytics %}
 
 {% block extra_head_base %}
-    <!-- <link rel="stylesheet" href="{{ STATIC_URL }}css/site_tabs.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/avatar.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/blogs.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/comments.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/friends.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/groups.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/locations.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/messages.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/microblogging.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/pagination.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/photos.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/tabs.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/topics.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/wiki.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/jquery.autocomplete.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}bookmarks/css/bookmarks.css" /> -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/jquery.autocomplete.css" />
+<!-- <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/jquery.autocomplete.css" />-->
     {% block extra_head %}{% endblock %}
 {% endblock %}
 
@@ -32,12 +16,6 @@
             <li id="tab_remap"><a href="{% url add_project_location %}">{% trans "ReMap" %}</a></li>
             <!-- <li id="tab_photos"><a href="{% url photos %}">{% trans "Photos" %}</a></li>
             <li id="tab_blogs"><a href="{% url blog_list_all %}">{% trans "Blogs" %}</a></li>
-            <li id="tab_tribes"><a href="{% url tribe_list %}">{% trans "Tribes" %}</a></li>
-            <li id="tab_tweets"><a href="{% url tweets_you_follow %}">{% trans "Tweets" %}</a></li>
-            <li id="tab_bookmarks"><a href="{% url all_bookmarks %}">{% trans "Bookmarks" %}</a></li>-->
-            <li id="tab_swaps"><a href="{% url offer_list_all %}">{% trans "Swaps" %}</a></li>
-            <!-- <li id="tab_locations"><a href="{% url loc_yours %}">{% trans "Locations" %}</a></li>
-            <li id="tab_inbox"><a href="{% url messages_inbox %}">{% trans "Inbox" %} ({{ combined_inbox_count }})</a></li>-->
         {% endspaceless %}</ul>
     {% endif %}
 {% endblock %}
