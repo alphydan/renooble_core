@@ -143,6 +143,9 @@ label {
     float:left;
     text-align:right;
     margin:4px 10px 0 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
 }
 
 div.above_logo{
