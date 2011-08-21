@@ -15,7 +15,7 @@ urlpatterns = patterns("",
     # url(r"^your_project/$", "remap.views.your_projects", name="your_projects"),
     # url(r"^user_project/(?P<username>\w+)/$", "remap.views.user_projects", name="user_projects"),
 
-    # CRUD urls
+    # CRUD urls (create restore update delete)
     url(r"^add/$", "remap.views.add_project", name="add_project_location"),
     url(r"^add/details/$", "remap.views.add_project_details", name="add_project_details"),
     # url(r"^add/confirm/$", "remap.views.add_project_confirm", name="add_project_confirm"),

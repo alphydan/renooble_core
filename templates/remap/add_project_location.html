@@ -22,9 +22,9 @@
                 map:      "#map",
                 lat:      "#lat",
                 lng:      "#lng",
-                locality: '#locality',
-                state:    '#state',
-                country:  '#country'
+                locality: "#locality",
+                state:    "#state",
+                country:  "#country"
             }
         });
         var gmarker = addresspickerMap.addresspicker( "marker");
@@ -43,11 +43,12 @@
 
 
 
-<div class="demo">
+<!-- <div class="demo"> -->
     <div class='input'>
         <p><label>Address : </label> <input id="addresspicker_map" />   </p>
         <form action="details/" method="post"> {% csrf_token %}
-            <table> 
+
+            <table>
                 <!-- FORM STARTS HERE -->
                 <tr>
                     <td> <label for="id_locality">Location: </label></td>
@@ -90,9 +91,12 @@
 
                 <!-- FORM ENDS HERE -->
             </table>
+
             <input type="submit" value="Submit" />
         </form>
     </div>
     <div id="map"></div>
-</div>
+<!-- </div> -->
+
+
 {% endblock %}
