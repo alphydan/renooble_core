@@ -2,75 +2,94 @@
 // http://code.google.com/apis/maps/documentation/javascript/reference.html#Marker
 // http://code.google.com/apis/maps/documentation/javascript/services.html#Geocoding
 // http://jqueryui.com/demos/autocomplete/#remote-with-cache
-      
+
 var geocoder;
 var map;
 var marker;
-    
+
 function initialize(){
-//MAP
-  var latlng = new google.maps.LatLng(41.659,-4.714);
-  var options = {
-    zoom: 16,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.SATELLITE
-  };
-        
-  map = new google.maps.Map(document.getElementById("map_canvas"), options);
-        
-  //GEOCODER
-  geocoder = new google.maps.Geocoder();
-        
-  marker = new google.maps.Marker({
-    map: map,
-    draggable: true
-  });
-				
+    //MAP
+    var latlng = new google.maps.LatLng(41.659,-4.714);
+    var options = {
+        zoom: 16,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+    };
+
+    map = new google.maps.Map(document.getElementById("map_canvas"), options);
+
+    //GEOCODER
+    geocoder = new google.maps.Geocoder();
+
+    marker = new google.maps.Marker({
+        map: map,
+           draggable: true
+    });
+
 }
-		
-$(document).ready(function() { 
-         
-  initialize();
-				  
-  $(function() {
-    $("#address").autocomplete({
-      //This bit uses the geocoder to fetch address values
-      source: function(request, response) {
-        geocoder.geocode( {'address': request.term }, function(results, status) {
-          response($.map(results, function(item) {
-            return {
-              label:  item.formatted_address,
-              value: item.formatted_address,
-              country: item.country,
-              latitude: item.geometry.location.lat(),
-              longitude: item.geometry.location.lng()
+// address_component selection
+function find(components, item) {
+    for(var j=0;j < components.length; j++){
+        for(var k=0; k < components[j].types.length; k++){
+            if(components[j].types[k] == item){
+                return components[j].long_name;
             }
-          }));
-        })
-      },
-      //This bit is executed upon selection of an address
-      select: function(event, ui) {
-        $("#latitude").val(ui.item.latitude);
-        $("#longitude").val(ui.item.longitude);
-        var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
-        marker.setPosition(location);
-        map.setCenter(location);
-      }
-    });
-  });
-	
-  //Add listener to marker for reverse geocoding
-  google.maps.event.addListener(marker, 'drag', function() {
-    geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        if (results[0]) {
-          $('#address').val(results[0].formatted_address);
-          $('#country').val(results[0].country);
-          $('#latitude').val(marker.getPosition().lat());
-          $('#longitude').val(marker.getPosition().lng());
         }
-      }
+    }
+};
+
+    $(document).ready(function() { 
+
+        initialize();
+
+        $(function() {
+            $("#address").autocomplete({
+                //This bit uses the geocoder to fetch address values
+                source: function(request, response) {
+                    geocoder.geocode( {'address': request.term }, function(results, status) {
+                        response($.map(results, function(item) {
+                            return {
+                                label:  item.formatted_address,
+                            value: item.formatted_address,
+                            components: item.address_components,
+                            location_type: item.geometry.location_type,
+                            latitude: item.geometry.location.lat(),
+                            longitude: item.geometry.location.lng()
+                            }
+                        }));
+                    })
+                },
+
+                //This bit is executed upon selection of an address
+                select: function(event, ui) {
+                    $("#latitude").val(ui.item.latitude);
+                    $("#longitude").val(ui.item.longitude);
+                    $("#country").val(find(ui.item.components, "country"));
+                    $("#locality").val(find(ui.item.components, "locality"));
+                    $("#route").val(find(ui.item.components, "route"));
+                    $("#location_type").val(ui.item.location_type);
+                    var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
+                    marker.setPosition(location);
+                    map.setCenter(location);
+                }
+            });
+        });
+
+        //Add listener to marker for reverse geocoding
+        google.maps.event.addListener(marker, 'drag', function() {
+            geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        $('#address').val(results[0].formatted_address);
+                        $('#country').val(find(results[0].address_components, "country"));
+                        $('#locality').val(find(results[0].address_components, "locality"));
+                        $('#route').val(find(results[0].address_components, "route"));
+                        $('#latitude').val(marker.getPosition().lat());
+                        $('#longitude').val(marker.getPosition().lng());
+                        $('#location_type').val(results[0].geometry.location_type);
+                    }
+                }
+            });
+        });
+
     });
-  });
-  
-});
