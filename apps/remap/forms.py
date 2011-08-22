@@ -16,7 +16,19 @@ from remap.models import Project
 class ReMapLocationForm(ModelForm):
     class Meta:
         model = Project
-        fields = ('locality', 'state', 'country', 'lat', 'lng', 'energyResource')
+        fields = (
+                'formatted_address', 
+                'route', 
+                'street_number', 
+                'postal_code', 
+                'locality', 
+                'state', 
+                'country', 
+                'lat', 
+                'lng', 
+                'location_type',
+                'energyResource', 
+                )
         widgets = {
             # 'locality': forms.TextInput(attrs={'disabled':'disabled'}), 
             # 'state': forms.TextInput(attrs={'disabled':'disabled'}), 

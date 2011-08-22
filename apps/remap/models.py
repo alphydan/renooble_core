@@ -5,12 +5,22 @@ class Project(models.Model):
 
 #####
 # Address related information
+    formatted_address = models.CharField(_('Complete Address'), max_length=100, 
+            null=True, blank=True) 
     locality = models.CharField(_('Location'), max_length=50, null=True, blank=True, 
             help_text=_('Where did you install the renewable energy device?'))
+    route = models.CharField(_('Street name'), max_length=50, 
+            null=True, blank=True) 
+    street_number = models.CharField(_('Street number'), max_length=50, 
+            null=True, blank=True)
+    postal_code= models.CharField(_('Zip code'), max_length=50, 
+            null=True, blank=True) 
     state = models.CharField(_('State'), max_length=100, 
             help_text=_('In which state did you install the device?'))
     country = models.CharField(_('Country'), max_length=50, 
             help_text=_('In which country did you install the devide?'))
+    location_type = models.CharField(_('Precision'), max_length=50, 
+            null=True, blank=True) 
     lat = models.DecimalField(_('Latitude'), max_digits=10, decimal_places=7, 
             help_text=_('What is the latitude of the location?'))
     lng = models.DecimalField(_('Longitude'), max_digits=10, decimal_places=7, 

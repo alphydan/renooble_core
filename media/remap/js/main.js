@@ -62,11 +62,14 @@ function find(components, item) {
 
                 //This bit is executed upon selection of an address
                 select: function(event, ui) {
-                    $("#latitude").val(ui.item.latitude);
-                    $("#longitude").val(ui.item.longitude);
+                    $("#lat").val(ui.item.latitude);
+                    $("#lng").val(ui.item.longitude);
                     $("#country").val(find(ui.item.components, "country"));
                     $("#locality").val(find(ui.item.components, "locality"));
                     $("#route").val(find(ui.item.components, "route"));
+                    $("#street_number").val(find(ui.item.components, "street_number"));
+                    $("#postal_code").val(find(ui.item.components, "postal_code"));
+                    $("#state").val(find(ui.item.components, "administrative_area_level_1"));
                     $("#location_type").val(ui.item.location_type);
                     var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
                     marker.setPosition(location);
@@ -83,9 +86,12 @@ function find(components, item) {
                         $('#address').val(results[0].formatted_address);
                         $('#country').val(find(results[0].address_components, "country"));
                         $('#locality').val(find(results[0].address_components, "locality"));
+                        $('#street_number').val(find(results[0].address_components, "street_number"));
+                        $('#postal_code').val(find(results[0].address_components, "postal_code"));
                         $('#route').val(find(results[0].address_components, "route"));
-                        $('#latitude').val(marker.getPosition().lat());
-                        $('#longitude').val(marker.getPosition().lng());
+                        $('#state').val(find(results[0].address_components, "administration_area_level_1"));
+                        $('#lat').val(marker.getPosition().lat());
+                        $('#lng').val(marker.getPosition().lng());
                         $('#location_type').val(results[0].geometry.location_type);
                     }
                 }
