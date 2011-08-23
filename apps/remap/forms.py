@@ -17,7 +17,7 @@ class ReMapLocationForm(ModelForm):
     class Meta:
         model = Project
         fields = (
-                'formatted_address', 
+                'address', 
                 'route', 
                 'street_number', 
                 'postal_code', 
@@ -30,9 +30,13 @@ class ReMapLocationForm(ModelForm):
                 'energyResource', 
                 )
         widgets = {
-            # 'locality': forms.TextInput(attrs={'disabled':'disabled'}), 
-            # 'state': forms.TextInput(attrs={'disabled':'disabled'}), 
-            # 'country': forms.TextInput(attrs={'disabled':'disabled'}), 
+            'route': forms.HiddenInput(), 
+            'street_number': forms.HiddenInput(), 
+            'postal_code': forms.HiddenInput(), 
+            'locality': forms.HiddenInput(), 
+            'state': forms.HiddenInput(), 
+            'country': forms.HiddenInput(), 
+            # 'location_type': forms.HiddenInput(), 
             # 'lat': forms.TextInput(attrs={'disabled':'disabled'}), 
             # 'lng': forms.TextInput(attrs={'disabled':'disabled'}), 
             }

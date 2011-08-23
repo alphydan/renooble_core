@@ -30,12 +30,15 @@
 -->
 
 <div class='input'>
-    <p><label>Address : </label> <input id="address" />   </p>
-    <div id="map_canvas" style="width:300px; height:300px"></div><br/>
-    <form action="details/" method="post"> {% csrf_token %}
+    <!-- <p><label>Address : </label> <input id="address" />   </p> -->
+    <div id="map_canvas" style="width:600px; height:450px"></div><br/>
+    <form action="" method="post"> {% csrf_token %}
         <br>
+            {% for hidden in locationForm.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
         <table>
-            {% for field in locationForm %}
+            {% for field in locationForm.visible_fields %}
             <tr>
                 <td> {{ field.label_tag }} </td>
                 <td> {{ field }} </td>

@@ -5,7 +5,7 @@ class Project(models.Model):
 
 #####
 # Address related information
-    formatted_address = models.CharField(_('Complete Address'), max_length=100, 
+    address = models.CharField(_('Complete Address'), max_length=100, 
             null=True, blank=True) 
     locality = models.CharField(_('Location'), max_length=50, null=True, blank=True, 
             help_text=_('Where did you install the renewable energy device?'))
@@ -15,9 +15,9 @@ class Project(models.Model):
             null=True, blank=True)
     postal_code= models.CharField(_('Zip code'), max_length=50, 
             null=True, blank=True) 
-    state = models.CharField(_('State'), max_length=100, 
+    state = models.CharField(_('State'), max_length=100, null=True, blank=True, 
             help_text=_('In which state did you install the device?'))
-    country = models.CharField(_('Country'), max_length=50, 
+    country = models.CharField(_('Country'), max_length=50, null=True, blank=True,  
             help_text=_('In which country did you install the devide?'))
     location_type = models.CharField(_('Precision'), max_length=50, 
             null=True, blank=True) 

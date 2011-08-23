@@ -11,7 +11,7 @@ function initialize(){
     //MAP
     var latlng = new google.maps.LatLng(41.659,-4.714);
     var options = {
-        zoom: 16,
+        zoom: 18,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.SATELLITE
     };
@@ -64,6 +64,7 @@ function find(components, item) {
                 select: function(event, ui) {
                     $("#lat").val(ui.item.latitude);
                     $("#lng").val(ui.item.longitude);
+                    $("#address").val(ui.item.value);
                     $("#country").val(find(ui.item.components, "country"));
                     $("#locality").val(find(ui.item.components, "locality"));
                     $("#route").val(find(ui.item.components, "route"));
