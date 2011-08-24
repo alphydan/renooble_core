@@ -11,15 +11,15 @@ class Project(models.Model):
             help_text=_('Where did you install the renewable energy device?'))
     route = models.CharField(_('Street name'), max_length=50, 
             null=True, blank=True) 
-    street_number = models.CharField(_('Street number'), max_length=50, 
+    streetNumber = models.CharField(_('Street number'), max_length=50, 
             null=True, blank=True)
-    postal_code= models.CharField(_('Zip code'), max_length=50, 
+    postalCode= models.CharField(_('Zip code'), max_length=50, 
             null=True, blank=True) 
     state = models.CharField(_('State'), max_length=100, null=True, blank=True, 
             help_text=_('In which state did you install the device?'))
     country = models.CharField(_('Country'), max_length=50, null=True, blank=True,  
             help_text=_('In which country did you install the devide?'))
-    location_type = models.CharField(_('Precision'), max_length=50, 
+    locationType = models.CharField(_('Precision'), max_length=50, 
             null=True, blank=True) 
     lat = models.DecimalField(_('Latitude'), max_digits=10, decimal_places=7, 
             help_text=_('What is the latitude of the location?'))

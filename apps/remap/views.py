@@ -23,28 +23,27 @@ def add_project(request):
             request.session['session_address'] = locationForm.cleaned_data['address']
             request.session['session_locality'] = locationForm.cleaned_data['locality']
             request.session['session_route'] = locationForm.cleaned_data['route']
-            request.session['session_street_number'] = locationForm.cleaned_data['street_number']
-            request.session['session_postal_code'] = locationForm.cleaned_data['postal_code']
+            request.session['session_streetNumber'] = locationForm.cleaned_data['streetNumber']
+            request.session['session_postalCode'] = locationForm.cleaned_data['postalCode']
             request.session['session_state'] = locationForm.cleaned_data['state']
             request.session['session_country'] = locationForm.cleaned_data['country']
-            request.session['session_location_type'] = locationForm.cleaned_data['location_type']
+            request.session['session_locationType'] = locationForm.cleaned_data['locationType']
             request.session['session_lat'] = locationForm.cleaned_data['lat']
             request.session['session_lng'] = locationForm.cleaned_data['lng']
             return HttpResponseRedirect(reverse('add_project_details'))
     else:
-        locationForm = ReMapLocationForm(
-                            auto_id='%s', 
+        locationForm = ReMapLocationForm(auto_id='%s', 
                             initial={
-                            'address': '34 Pasir Panjang Hill, Singapore 118856',
+                                'address': '34 Pasir Panjang Hill, Singapore 118856',
                             'route': 'Pasir Pajang Hill',
-                            'street_number': '34',
-                            'postal_code': '118856',
+                            'streetNumber': '34',
+                            'postalCode': '118856',
                             'locality': 'Singapore', 
                             'state': '', 
                             'country': 'Singapore', 
                             'lat': '1.28', 
                             'lng': '103.78', 
-                            'location_type': 'ROOFTOP',
+                            'locationType': 'ROOFTOP',
                             })
     return render_to_response('remap/add_project_location.html', {
         'locationForm': locationForm,
@@ -52,12 +51,27 @@ def add_project(request):
 
     # add project details    
 def add_project_details(request):
-    print request.session['session_energyResource']
-    return HttpResponseRedirect('../../../about/')
-    # return print request.session.get('test')
-#     return redirect('add_project_details')
+    if request.session.get('session_address', False):
+        session_results = {
+                'energyResource': request.session['session_energyResource'], 
+                'address': request.session['session_address'], 
+                'lat': request.session['session_lat'], 
+                'lng': request.session['session_lng'],
+                }
+    else:
+        return HttpResponseRedirect(reverse('add_project'))
 
-# create a dic, download the session info, stuff it in dic, create display 
+    if request.method == 'POST': # If the form has been submitted...
+        projectForm = ReMapProjectForm(request.POST) 
+    
+        if projectForm.is_valid(): # All validation rules pass
+            print "form is valid"
+            # save the data to the database
+            return HttpResponseRedirect(reverse('about'))
+
+    else:
+        return HttpResponseRedirect(reverse('add_project'))
+
 def add_project_details_old(request):
     if request.method == 'POST': # If the form has been submitted...
         locationForm = ReMapLocationForm(request.POST) 

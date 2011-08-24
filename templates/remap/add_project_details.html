@@ -9,8 +9,11 @@
 <p>Please enter your project details to the <b>Re.nooble</b> database here:</p>
 {% endblocktrans %}
 
-<p>You have entered {{ country }}</p>
-<br>
+<p>You have entered<br>
+Address: {{ session_results.address }} <br>
+Latitude: {{ session_results.lat }} <br>
+Longitude: {{ session_results.lng }} <br>
+</p>
 <div class="input">
 <form action="../confirm/" method="post">{% csrf_token %}
     <table>
