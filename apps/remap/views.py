@@ -1,12 +1,18 @@
 # Django imports
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
+import datetime
 
 # Re.nooble imports
 from remap.models import Project
-from remap.forms import ReMapLocationForm, ReMapProjectForm, ReMapUserEditProject
+from remap.forms import ReMapLocationForm, ReMapProjectForm, ReMapUserEditProject, ReMapSolarDetails, ReMapWindDetails
+
+
+    ###################################################################
+    #      Display all projects
+    ###################################################################
 
 def projects(request):
     #
@@ -14,6 +20,10 @@ def projects(request):
 # and adding it to the google map
 #
     return redirect('http://www.django.org')
+
+    ###################################################################
+    #     Register project location and start registration process
+    ###################################################################
 
 def add_project(request):
     if  request.method == 'POST':
@@ -49,9 +59,13 @@ def add_project(request):
         'locationForm': locationForm,
         }, context_instance = RequestContext(request))
 
+    ###################################################################
     # add project details    
+    ###################################################################
 def add_project_details(request):
+    print "here"
     if request.session.get('session_address', False):
+        print "Session available"
         session_results = {
                 'energyResource': request.session['session_energyResource'], 
                 'address': request.session['session_address'], 
@@ -59,49 +73,58 @@ def add_project_details(request):
                 'lng': request.session['session_lng'],
                 }
     else:
-        return HttpResponseRedirect(reverse('add_project'))
+        return redirect(add_project)
 
     if request.method == 'POST': # If the form has been submitted...
         projectForm = ReMapProjectForm(request.POST) 
-    
-        if projectForm.is_valid(): # All validation rules pass
+        if session_results['energyResource'] == 'SOLAR':
+            resourceForm = ReMapSolarDetails(request.POST)
+            resourceFormValid = resourceForm.is_valid()
+        elif session_results['energyResource'] == 'WIND':
+            resourceForm = ReMapWindDetails(request.POST)
+            resourceFormValid = resourceForm.is_valid()
+   
+
+# http://stackoverflow.com/questions/569468/django-multiple-models-in-one-template-using-forms
+
+        if projectForm.is_valid() and resourceFormValid: # All validation rules pass
             print "form is valid"
-            # save the data to the database
-            return HttpResponseRedirect(reverse('about'))
-
-    else:
-        return HttpResponseRedirect(reverse('add_project'))
-
-def add_project_details_old(request):
-    if request.method == 'POST': # If the form has been submitted...
-        locationForm = ReMapLocationForm(request.POST) 
-        if locationForm.is_valid(): # All validation rules pass
-            locality = locationForm.cleaned_data['locality']
-            state = locationForm.cleaned_data['state']
-            country = locationForm.cleaned_data['country']
-            lat = locationForm.cleaned_data['lat']
-            lng = locationForm.cleaned_data['lng']
-            energyResource = locationForm.cleaned_data['energyResource']
+            foo = ReMapProjectForm(request.POST)
+            savedProjectForm = foo.save(commit=False)
+            savedProjectForm.lat = session_results['lat']
+            savedProjectForm.lng = session_results['lng']
+            savedProjectForm.address = session_results['address']
+            savedProjectForm.energyResource = session_results['energyResource']
+            savedProjectForm.entryDate = datetime.now()
+            savedProjectForm.save()
             
-            projectForm = ReMapProjectForm(initial = { 
-                'locality': locality, 
-                'state': state, 
-                'country': country, 
-                'lat': lat,
-                'lng': lng,
-                'energyResource': energyResource,
-            })
-            return render_to_response('remap/add_project_details.html', {
-                'projectForm': projectForm,
-            }, context_instance = RequestContext(request))
+            savedResourceForm = resourceForm.save(commit=False)
+            resourceForm.projectID = savedProjectForm
+            resourceForm.save()
+            # save the data to the database
+            # return HttpResponseRedirect(reverse('about', args=()))
+            # 
+            # forward to confirmation site
 
-        else:
-            print locationForm.errors 
-            return render_to_response('remap/add_project_location.html', {
-                'locationForm': locationForm,
-            }, context_instance = RequestContext(request))
+            return redirect(about)
+
     else:
-        return HttpResponseRedirect('../') # Redirect to the location reg if site is requested w/o proper location 
+        projectForm = ReMapProjectForm()
+
+        if session_results['energyResource'] == 'SOLAR':
+            resourceForm = ReMapSolarDetails()
+        elif session_results['energyResource'] == 'WIND':
+            resourceForm = ReMapWindDetails()
+        
+        return render_to_response('remap/add_project_details.html', {
+            'projectForm': projectForm,
+            'session_results': session_results,
+            'resourceForm': resourceForm, 
+        }, context_instance = RequestContext(request))
+        
+    ###################################################################
+    #    Confirmation page for the registered project
+    ###################################################################
 
 def add_project_confirm(request):
     if request.method == 'POST': # If the form has been submitted...

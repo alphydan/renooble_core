@@ -15,7 +15,7 @@ Latitude: {{ session_results.lat }} <br>
 Longitude: {{ session_results.lng }} <br>
 </p>
 <div class="input">
-<form action="../confirm/" method="post">{% csrf_token %}
+<form action="" method="post">{% csrf_token %}
     <table>
         {% for field in projectForm %}
         <tr>
@@ -37,6 +37,9 @@ Longitude: {{ session_results.lng }} <br>
         {% endfor %}
 
     </table>
+
+    <p> Installation Details </p>
+    {{ resourceForm.as_p }}
     <input type="submit" value="Register Project" />
 </form>
 </div>

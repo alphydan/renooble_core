@@ -11,7 +11,7 @@ from django.core.mail import send_mail
 # from api.fields import ModelAutoCompleteField
 import datetime
 
-from remap.models import Project
+from remap.models import Project, WindProject, SolarProject
 
 class ReMapLocationForm(ModelForm):
     class Meta:
@@ -37,13 +37,21 @@ class ReMapLocationForm(ModelForm):
             'state': forms.HiddenInput(), 
             'country': forms.HiddenInput(), 
             # 'location_type': forms.HiddenInput(), 
-            # 'lat': forms.TextInput(attrs={'disabled':'disabled'}), 
-            # 'lng': forms.TextInput(attrs={'disabled':'disabled'}), 
             }
 
 class ReMapProjectForm(ModelForm):
     class Meta:
         model = Project
+        fields = (
+                'projectName', 
+                'projectDescription', 
+                'rawTechnology', 
+                'installationDate', 
+                'installedPower', 
+                'AEP', 
+                'installationCosts', 
+                'userEmail')
+
         exclude = (
                 'entryDate',
                 'adminComments',
@@ -51,17 +59,22 @@ class ReMapProjectForm(ModelForm):
                 'activated', 
                 'reviewed',
                 'reviewDate',
+                'address',
+                'route',
+                'streetNumber',
+                'locality',
+                'postalCode',
+                'country',
+                'locationType',
+                'lat',
+                'lng',
+                'state',
                 )
         widgets = {
                 'installationDate': SelectDateWidget(years=range(1980, 2011)), 
                 'projectDescription': forms.Textarea, 
                 'userComments': forms.Textarea, 
-                'locality': forms.TextInput(attrs={'disabled':'disabled'}), 
-                'state': forms.TextInput(attrs={'disabled':'disabled'}), 
-                'country': forms.TextInput(attrs={'disabled':'disabled'}), 
-                'lat': forms.TextInput(attrs={'disabled':'disabled'}), 
-                'lng': forms.TextInput(attrs={'disabled':'disabled'}),                
-                'energyResource': forms.TextInput(attrs={'disabled':'disabled'}),                
+                # 'locality': forms.TextInput(attrs={'disabled':'disabled'}), 
                 }
 
 class ReMapUserEditProject(ModelForm):
@@ -69,4 +82,18 @@ class ReMapUserEditProject(ModelForm):
         model = Project
         fields = ('projectName', 'projectDescription',  'rawTechnology', 'installationDate', 'installedPower', 'AEP', 'hideLocation', 'picture', 'projectBuilding', 'surroundings', 'gridConnection', 'commercialInstallation', 'userEmail', 'userComments')
         widgets = {'installationDate': SelectDateWidget(years=range(1980, 2011)), 'projectDescription': forms.Textarea, 'userComments': forms.Textarea}
+
+class ReMapWindDetails(ModelForm):
+    class Meta:
+        model = WindProject
+        exclude = (
+                'projectID',
+                )
+
+class ReMapSolarDetails(ModelForm):
+    class Meta:
+        model = SolarProject
+        exclude = (
+                'projectID',
+                )
 

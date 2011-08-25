@@ -39,20 +39,26 @@ class Project(models.Model):
     rawTechnology = models.CharField("Product name", max_length=150, null=True, blank=True, 
             help_text="What is the product name of your installation?")
     installationDate = models.DateField("Installation date", null=True, blank=True, 
-            help_text="When did you install your renewable energy installation?") # User information, mendatory
+            help_text="When did you install or commissioning your renewable energy installation?") 
+            # User information, mendatory
     installedPower = models.DecimalField("Power rating", max_digits=7, decimal_places=4, 
-            help_text="What is the power rating in kilo watt (kW) of your installation?") # in kW User information, mendatory
-    AEP = models.DecimalField("Annual energy production in kWh", max_digits=10, decimal_places=4, null=True, blank=True, 
+            help_text="What is the power rating in kilo watt (kW) of your installation?") 
+            # in kW User information, mendatory
+    AEP = models.DecimalField("Annual energy production in kWh", max_digits=10, decimal_places=4, 
+            null=True, blank=True, 
             help_text="What is the annual energy production (AEP) of your installation? "
-            +"Only answer if your installation is running more than one year.") # in kWh User information, voluntary
-    installationCosts = models.DecimalField("Installation costs", max_digits=10, decimal_places=4, null=True, blank=True, 
+            +"Only answer if your installation is running more than one year.") 
+            # in kWh User information, voluntary
+    installationCosts = models.DecimalField("Installation costs", max_digits=10, decimal_places=4, 
+            null=True, blank=True, 
             help_text="How much did your installation cost?") 
     RESOURCES = (
             ('WIND', 'Wind power'),
             ('SOLAR', 'Photovoltaic'),
             )
     energyResource=models.CharField("Renewable Resource", max_length = 5, choices=RESOURCES, 
-            help_text="What type of renewable energy device have you installed?") # User information, mandatory
+            help_text="What type of renewable energy device have you installed?") 
+            # User information, mandatory
     PROJECT_BUILDING = (
             ('PRHO', 'Private House'),
             ('APART', 'Apartment'),
@@ -64,14 +70,18 @@ class Project(models.Model):
             ('UNSP', 'Unspecified'),
             # ('OTHER', 'Other'),
             )
-    projectBuilding = models.CharField("Property of installation", max_length=10, choices = PROJECT_BUILDING, blank=True, null=True, 
-            help_text="At what kind of property did you install the renewable energy device?") # User information, voluntary
+    projectBuilding = models.CharField("Property of installation", max_length=10, 
+            choices = PROJECT_BUILDING, blank=True, null=True, 
+            help_text="At what kind of property did you install the renewable energy device?") 
+            # User information, voluntary
     GRID=(
             ('ON', 'Grid Connected'),
             ('OFF', 'Off-Grid / Stand alone'),
             )
-    gridConnection = models.CharField("Grid connected?", max_length = 3, choices=GRID, blank=True, null=True, 
-            help_text="Is your installation connected to the electric grid?") # User information, voluntary
+    gridConnection = models.CharField("Grid connected?", max_length = 3, choices=GRID, 
+            blank=True, null=True, 
+            help_text="Is your installation connected to the electric grid?") 
+            # User information, voluntary
     SURROUND = (
             ('GDN', 'Garden'),
             ('FLD', 'Field'),
@@ -80,9 +90,11 @@ class Project(models.Model):
             ('MAR', 'Marina environment'),
             ('BAL', 'Balcony'),
             )
-    surroundings=models.CharField("Surrondings of installation", max_length = 10, choices=SURROUND, blank=True, null=True, 
+    surroundings=models.CharField("Surrondings of installation", max_length = 10, choices=SURROUND,
+            blank=True, null=True, 
             help_text="Please describe the surrondings of your installation. "+
-            "This can give other users in your area a good understanding of their possible performance.") # User information, voluntary
+            "This can give other users in your area a good understanding of their possible performance.") 
+            # User information, voluntary
     commercialInstallation = models.BooleanField("Commercial installation", default=False, 
             help_text="Please check this box if your installation of larger scale (more than 500kW) or " +
             "if you have a power-purchase agreement with a third-party?") # User information, voluntary
@@ -135,6 +147,13 @@ class SolarProject(models.Model):
             ('HOR', 'Horizontal'),
             ('FIX', 'Fixed'),
             )
-    Tracking = models.CharField(max_length= 12, choices=MOUNTING, null=True, blank=True)
-
+    Tracking = models.CharField(_('Solar Tracking Device'), max_length= 3, choices=MOUNTING, 
+            null=True, blank=True, help_text=_('Which type of tracking device is ' + 
+                'installed for the solar installation?'))
+    avgPeakSun = models.DecimalField(_('Average Peak Sun Hours'), max_digits=6, decimal_places=3, 
+            help_text=_('How many hours of sun are available on average?'))
+    arrayAzimuth = models.DecimalField(_('Azimuth of Installation'), max_digits=10, decimal_places=7, 
+            help_text=_('What is the azimuths of the solar installation?'))
+    tiltAngle = models.DecimalField(_('Tilt Angle of Installation'), max_digits=10, decimal_places=7, 
+            help_text=_('What is the tilt angle of the solar installation?'))
 
